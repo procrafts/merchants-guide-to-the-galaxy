@@ -8,7 +8,7 @@
     "start": "nx serve",
     "build": "nx build --prod",
     "test": "nx test --watch",
-    "e2e": "nx e2e"
+    "e2e": "nx e2e frontend-e2e"
   },
   "private": true,
   "dependencies": {

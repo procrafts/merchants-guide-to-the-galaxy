@@ -1,1 +1,8 @@
-<h1>{{ title | uppercase }}</h1>
+<div class="container">
+  <h1>{{ title | uppercase }}</h1>
+  <mat-form-field>
+    <mat-label>Enter command...</mat-label>
+    <input matInput [formControl]="commandControl" />
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="submit()">Basic</button>
+</div>
