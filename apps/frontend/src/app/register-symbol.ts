@@ -5,5 +5,5 @@ export interface RegisterSymbolModel {
   value: string;
 }
 export class RegisterSymbol extends UseCase<RegisterSymbolModel> {
-  protected pattern = /^(?<key>\w+) is (?<value>[IVXLCDM])$/;
+  protected pattern = /^(?<key>[a-zA-Z]+) is (?<value>[IVXLCDM])$/;
 }

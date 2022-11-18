@@ -1,11 +1,14 @@
 import { InjectionToken } from '@angular/core';
 import { RegisterSymbol } from './register-symbol';
+import { UseCase } from './use-case';
 
-const useCases = [RegisterSymbol] as const;
+export interface UseCaseConstructor {
+  new (): UseCase;
+}
 
-export type UseCases = typeof useCases;
+const useCases: UseCaseConstructor[] = [RegisterSymbol];
 
-export const USE_CASES = new InjectionToken<UseCases>('USE_CASES', {
+export const USE_CASES = new InjectionToken<UseCaseConstructor[]>('USE_CASES', {
   factory() {
     return useCases;
   },
