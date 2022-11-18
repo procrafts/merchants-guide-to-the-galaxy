@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
-import { RegisterSymbol } from './register-symbol';
-import { UseCase } from './use-case';
+import { inject, Injectable } from '@angular/core';
+import { USE_CASES, UseCases } from './use-cases';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PatternService {
-  private getPatterns(): UseCase[] {
-    return [new RegisterSymbol()];
-  }
+  private readonly useCases: UseCases = inject(USE_CASES);
 
-  identifyUseCase(phrase: string): UseCase | undefined {
-    const useCase = this.getPatterns().find((p) => p.identify(phrase));
+  matchUseCase(phrase: string) {
+    const useCase = this.useCases
+      .map((c) => new c())
+      .find((p) => p.identify(phrase));
     if (useCase) {
       useCase.initialize(phrase);
     }
