@@ -23,8 +23,6 @@ describe('frontend', () => {
   it('should count alien numerals', () => {
     getInput().type('glob is I');
     getSubmitButton().click();
-    getInput().type('prok is V');
-    getSubmitButton().click();
     getInput().type('pish is X');
     getSubmitButton().click();
     getInput().type('tegj is L');
@@ -32,5 +30,17 @@ describe('frontend', () => {
     getInput().type('how much is pish tegj glob glob ?');
     getSubmitButton().click();
     getFirstOutput().contains('pish tegj glob glob is 42');
+  });
+
+  it('should calculate price', () => {
+    getInput().type('glob is I');
+    getSubmitButton().click();
+    getInput().type('prok is V');
+    getSubmitButton().click();
+    getInput().type('glob glob Silver is 34 Credits');
+    getSubmitButton().click();
+    getInput().type('how many Credits is glob prok Silver ?');
+    getSubmitButton().click();
+    getFirstOutput().contains('glob prok Silver is 68 Credits');
   });
 });

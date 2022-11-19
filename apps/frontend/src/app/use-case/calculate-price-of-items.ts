@@ -2,6 +2,7 @@ import { UseCase } from './use-case';
 
 export interface CalculatePriceOfItemsModel {
   quantity: string;
+  item: string;
 }
 export class CalculatePriceOfItems extends UseCase<CalculatePriceOfItemsModel> {
   protected pattern =
