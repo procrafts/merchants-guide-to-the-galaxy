@@ -4,6 +4,8 @@
 
 https://procrafts.github.io/merchants-guide-to-the-galaxy/
 
+[Watch cypress testing the hosted application](cypress-tests-on-hosted-app.mp4)
+
 ## Setup Guide
 
 - install [Node.js 16](https://nodejs.org/de/download/releases/)
