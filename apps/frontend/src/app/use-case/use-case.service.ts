@@ -4,7 +4,7 @@ import { USE_CASES } from './use-cases';
 @Injectable({
   providedIn: 'root',
 })
-export class PatternService {
+export class UseCaseService {
   private useCases = inject(USE_CASES);
 
   matchUseCase(phrase: string) {

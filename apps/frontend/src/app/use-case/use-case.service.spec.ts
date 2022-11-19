@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PatternService } from './pattern.service';
+import { UseCaseService } from './use-case.service';
 import { UseCase } from './use-case';
 import { USE_CASES } from './use-cases';
 
@@ -10,14 +10,14 @@ class TestUseCase extends UseCase {
   protected pattern = /^a(?<target>b)c$/;
 }
 
-describe('PatternService', () => {
-  let service: PatternService;
+describe('UseCaseService', () => {
+  let service: UseCaseService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [{ provide: USE_CASES, useValue: [TestUseCase] }],
     });
-    service = TestBed.inject(PatternService);
+    service = TestBed.inject(UseCaseService);
   });
 
   it('should be created', () => {
