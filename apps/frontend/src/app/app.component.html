@@ -2,13 +2,14 @@
   <h1>{{ title | uppercase }}</h1>
   <mat-form-field>
     <mat-label>Enter command...</mat-label>
-    <input data-testid="input" matInput [formControl]="commandControl" />
+    <input data-testid="input" required matInput [formControl]="commandControl" />
   </mat-form-field>
   <button
     data-testid="submit"
     mat-raised-button
     color="primary"
     (click)="submit()"
+    [disabled]="commandControl.invalid"
   >
     Basic
   </button>
