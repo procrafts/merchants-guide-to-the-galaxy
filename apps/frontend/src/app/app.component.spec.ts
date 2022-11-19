@@ -6,6 +6,7 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatInputHarness } from '@angular/material/input/testing';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
@@ -58,5 +59,20 @@ describe('AppComponent', () => {
 
     expect(submitMock).toBeCalled();
     expect(fixture.componentInstance.commandControl.value).toBe('glob is I');
+  });
+
+  it('add output element', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+
+    fixture.componentInstance.print('Test');
+    fixture.detectChanges();
+
+    const outputElement: HTMLParagraphElement = fixture.debugElement.query(
+      By.css('.output-container p')
+    )?.nativeElement;
+    outputElement.textContent;
+    expect(outputElement).toBeDefined();
+    expect(outputElement.textContent).toBe('Test');
   });
 });
