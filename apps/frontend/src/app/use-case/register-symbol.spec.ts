@@ -1,5 +1,5 @@
 import { RegisterSymbol } from './register-symbol';
-import { TestPhrases } from './testing/test-phrases';
+import { TestPhrases } from '../testing/test-phrases';
 
 describe('RegisterSymbol', () => {
   describe('.identify', () => {

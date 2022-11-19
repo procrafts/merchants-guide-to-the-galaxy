@@ -1,5 +1,5 @@
 import { RegisterPrice } from './register-price';
-import { TestPhrases } from './testing/test-phrases';
+import { TestPhrases } from '../testing/test-phrases';
 
 describe('RegisterPrice', () => {
   describe('.identify', () => {

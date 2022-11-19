@@ -1,5 +1,5 @@
 import { ProfessIncomprehension } from './profess-incomprehension';
-import { TestPhrases } from './testing/test-phrases';
+import { TestPhrases } from '../testing/test-phrases';
 
 describe('ProfessIncomprehension', () => {
   describe('.identify', () => {

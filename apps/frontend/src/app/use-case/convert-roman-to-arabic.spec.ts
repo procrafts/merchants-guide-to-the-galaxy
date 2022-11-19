@@ -1,5 +1,5 @@
 import { ConvertRomanToArabic } from './convert-roman-to-arabic';
-import { TestPhrases } from './testing/test-phrases';
+import { TestPhrases } from '../testing/test-phrases';
 
 describe('ConvertRomanToArabic', () => {
   describe('.identify', () => {

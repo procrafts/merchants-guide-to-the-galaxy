@@ -1,5 +1,5 @@
 import { CalculatePriceOfItems } from './calculate-price-of-items';
-import { TestPhrases } from './testing/test-phrases';
+import { TestPhrases } from '../testing/test-phrases';
 
 describe('CalculatePriceOfItems', () => {
   describe('.identify', () => {
