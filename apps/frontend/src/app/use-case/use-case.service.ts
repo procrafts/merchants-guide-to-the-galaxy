@@ -8,12 +8,10 @@ export class UseCaseService {
   private useCases = inject(USE_CASES);
 
   matchUseCase(phrase: string) {
-    const useCase = this.useCases
-      .map((c) => new c())
-      .find((p) => p.identify(phrase));
+    const useCase = this.useCases.find((p) => p.identify(phrase));
     if (useCase) {
-      useCase.initialize(phrase);
+      return { name: useCase.name, data: useCase.readData(phrase) };
     }
-    return useCase;
+    return undefined;
   }
 }

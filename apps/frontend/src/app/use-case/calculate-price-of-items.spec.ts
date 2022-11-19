@@ -1,21 +1,22 @@
-import { CalculatePriceOfItems } from './calculate-price-of-items';
 import { TestPhrases } from '../testing/test-phrases';
+import {
+  CalculatePriceOfItems,
+  calculatePriceOfItemsParser,
+} from './calculate-price-of-items';
 
 describe('CalculatePriceOfItems', () => {
   describe('.identify', () => {
     it.each(TestPhrases.getMatchTable('calculatePriceOfItems'))(
       'should $verb "$phrase"',
       ({ phrase, isMatch: expectedResult }) => {
-        const subject = new CalculatePriceOfItems();
-
-        const result = subject.identify(phrase);
+        const result = calculatePriceOfItemsParser.identify(phrase);
 
         expect(result).toBe(expectedResult);
       }
     );
   });
 
-  describe('.initialize', () => {
+  describe('.readData', () => {
     it.each([
       {
         phrase: TestPhrases.phrases.calculatePriceOfItems[0],
@@ -29,14 +30,12 @@ describe('CalculatePriceOfItems', () => {
         phrase: TestPhrases.phrases.calculatePriceOfItems[2],
         expectedData: { quantity: 'glob prok', item: 'Iron' },
       },
-    ])(
+    ] as { phrase: string; expectedData: CalculatePriceOfItems }[])(
       'should read correct data from "$phrase"',
       ({ phrase, expectedData }) => {
-        const subject = new CalculatePriceOfItems();
+        const data = calculatePriceOfItemsParser.readData(phrase);
 
-        subject.initialize(phrase);
-
-        expect(subject.getData()).toEqual(expectedData);
+        expect(data).toEqual(expectedData);
       }
     );
   });

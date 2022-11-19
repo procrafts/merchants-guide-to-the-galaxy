@@ -1,10 +1,25 @@
-import { UseCase } from './use-case';
+import {
+  createIdentify,
+  createIsSpecificUseCase,
+  createReadData,
+  UseCaseParser,
+} from './use-case';
 
-export interface CalculatePriceOfItemsModel {
+export interface CalculatePriceOfItems {
   quantity: string;
   item: string;
 }
-export class CalculatePriceOfItems extends UseCase<CalculatePriceOfItemsModel> {
-  protected pattern =
-    /^how many Credits is (?<quantity>([a-zA-Z]+ ?)+?) (?<item>[a-zA-Z]+) \?$/;
-}
+
+const pattern =
+  /^how many Credits is (?<quantity>([a-zA-Z]+ ?)+?) (?<item>[a-zA-Z]+) \?$/;
+
+export const calculatePriceOfItemsParser: UseCaseParser<CalculatePriceOfItems> =
+  {
+    name: 'CalculatePriceOfItems',
+    identify: createIdentify(pattern),
+    readData: createReadData(pattern),
+  };
+
+export const isCalculatePriceOfItems = createIsSpecificUseCase(
+  calculatePriceOfItemsParser
+);

@@ -1,21 +1,19 @@
-import { RegisterSymbol } from './register-symbol';
 import { TestPhrases } from '../testing/test-phrases';
+import { RegisterSymbol, registerSymbolParser } from './register-symbol';
 
 describe('RegisterSymbol', () => {
   describe('.identify', () => {
     it.each(TestPhrases.getMatchTable('registerSymbol'))(
       'should $verb "$phrase"',
       ({ phrase, isMatch: expectedResult }) => {
-        const subject = new RegisterSymbol();
-
-        const result = subject.identify(phrase);
+        const result = registerSymbolParser.identify(phrase);
 
         expect(result).toBe(expectedResult);
       }
     );
   });
 
-  describe('.initialize', () => {
+  describe('.readData', () => {
     it.each([
       {
         phrase: TestPhrases.phrases.registerSymbol[0],
@@ -33,14 +31,12 @@ describe('RegisterSymbol', () => {
         phrase: TestPhrases.phrases.registerSymbol[3],
         expectedData: { alien: 'tegj', roman: 'L' },
       },
-    ])(
+    ] as { phrase: string; expectedData: RegisterSymbol }[])(
       'should read correct data from "$phrase"',
       ({ phrase, expectedData }) => {
-        const subject = new RegisterSymbol();
+        const data = registerSymbolParser.readData(phrase);
 
-        subject.initialize(phrase);
-
-        expect(subject.getData()).toEqual(expectedData);
+        expect(data).toEqual(expectedData);
       }
     );
   });

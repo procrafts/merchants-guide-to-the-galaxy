@@ -1,11 +1,23 @@
-import { UseCase } from './use-case';
+import {
+  createIdentify,
+  createIsSpecificUseCase,
+  createReadData,
+  UseCaseParser,
+} from './use-case';
 
-export interface RegisterPriceModel {
+export interface RegisterPrice {
   amount: string;
   item: string;
   price: string;
 }
-export class RegisterPrice extends UseCase<RegisterPriceModel> {
-  protected pattern =
-    /^(?<amount>[a-zA-Z][a-zA-Z ]*) (?<item>[a-zA-Z]+) is (?<price>\d+) Credits$/;
-}
+
+const pattern =
+  /^(?<amount>[a-zA-Z][a-zA-Z ]*) (?<item>[a-zA-Z]+) is (?<price>\d+) Credits$/;
+
+export const registerPriceParser: UseCaseParser<RegisterPrice> = {
+  name: 'RegisterPrice',
+  identify: createIdentify(pattern),
+  readData: createReadData(pattern),
+};
+
+export const isRegisterPrice = createIsSpecificUseCase(registerPriceParser);

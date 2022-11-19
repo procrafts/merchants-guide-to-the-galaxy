@@ -1,21 +1,19 @@
-import { RegisterPrice } from './register-price';
 import { TestPhrases } from '../testing/test-phrases';
+import { RegisterPrice, registerPriceParser } from './register-price';
 
 describe('RegisterPrice', () => {
   describe('.identify', () => {
     it.each(TestPhrases.getMatchTable('registerPrice'))(
       'should $verb "$phrase"',
       ({ phrase, isMatch: expectedResult }) => {
-        const subject = new RegisterPrice();
-
-        const result = subject.identify(phrase);
+        const result = registerPriceParser.identify(phrase);
 
         expect(result).toBe(expectedResult);
       }
     );
   });
 
-  describe('.initialize', () => {
+  describe('.readData', () => {
     it.each([
       {
         phrase: TestPhrases.phrases.registerPrice[0],
@@ -29,14 +27,12 @@ describe('RegisterPrice', () => {
         phrase: TestPhrases.phrases.registerPrice[2],
         expectedData: { amount: 'pish pish', item: 'Iron', price: '3910' },
       },
-    ])(
+    ] as { phrase: string; expectedData: RegisterPrice }[])(
       'should read correct data from "$phrase"',
       ({ phrase, expectedData }) => {
-        const subject = new RegisterPrice();
+        const data = registerPriceParser.readData(phrase);
 
-        subject.initialize(phrase);
-
-        expect(subject.getData()).toEqual(expectedData);
+        expect(data).toEqual(expectedData);
       }
     );
   });

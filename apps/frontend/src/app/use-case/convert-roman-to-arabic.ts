@@ -1,8 +1,22 @@
-import { UseCase } from './use-case';
+import {
+  createIdentify,
+  createIsSpecificUseCase,
+  createReadData,
+  UseCaseParser,
+} from './use-case';
 
-export interface ConvertRomanToArabicModel {
+export interface ConvertRomanToArabic {
   quantity: string;
 }
-export class ConvertRomanToArabic extends UseCase<ConvertRomanToArabicModel> {
-  protected pattern = /^how much is (?<quantity>([a-zA-Z]+ ?)+?) \?$/;
-}
+
+const pattern = /^how much is (?<quantity>([a-zA-Z]+ ?)+?) \?$/;
+
+export const convertRomanToArabicParser: UseCaseParser<ConvertRomanToArabic> = {
+  name: 'ConvertRomanToArabic',
+  identify: createIdentify(pattern),
+  readData: createReadData(pattern),
+};
+
+export const isConvertRomanToArabic = createIsSpecificUseCase(
+  convertRomanToArabicParser
+);

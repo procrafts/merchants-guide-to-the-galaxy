@@ -1,26 +1,23 @@
 import { InjectionToken } from '@angular/core';
-import { CalculatePriceOfItems } from './calculate-price-of-items';
-import { ConvertRomanToArabic } from './convert-roman-to-arabic';
-import { ProfessIncomprehension } from './profess-incomprehension';
-import { RegisterPrice } from './register-price';
-import { RegisterSymbol } from './register-symbol';
-import { UseCase } from './use-case';
+import { calculatePriceOfItemsParser } from './calculate-price-of-items';
+import { convertRomanToArabicParser } from './convert-roman-to-arabic';
+import { registerPriceParser } from './register-price';
+import { registerSymbolParser } from './register-symbol';
+import { UseCaseParser } from './use-case';
 
-export interface UseCaseConstructor {
-  new (): UseCase;
-}
-
-const useCases: UseCaseConstructor[] = [
-  RegisterSymbol,
-  RegisterPrice,
-  ConvertRomanToArabic,
-  CalculatePriceOfItems,
-  ProfessIncomprehension,
+const useCases: UseCaseParser<unknown>[] = [
+  registerSymbolParser,
+  registerPriceParser,
+  convertRomanToArabicParser,
+  calculatePriceOfItemsParser,
 ];
 
-export const USE_CASES = new InjectionToken<UseCaseConstructor[]>('USE_CASES', {
-  factory() {
-    return useCases;
-  },
-  providedIn: 'root',
-});
+export const USE_CASES = new InjectionToken<UseCaseParser<unknown>[]>(
+  'USE_CASES',
+  {
+    factory() {
+      return useCases;
+    },
+    providedIn: 'root',
+  }
+);

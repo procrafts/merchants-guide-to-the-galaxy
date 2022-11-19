@@ -1,21 +1,26 @@
 import { TestBed } from '@angular/core/testing';
+import { UseCaseParser } from './use-case';
 
 import { UseCaseService } from './use-case.service';
-import { UseCase } from './use-case';
 import { USE_CASES } from './use-cases';
 
 const REGISTER_SYMBOL_PHRASE = 'abc';
 
-class TestUseCase extends UseCase {
-  protected pattern = /^a(?<target>b)c$/;
-}
+const testUseCases: UseCaseParser<unknown>[] = [
+  {
+    name: 'ABC',
+    identify: (phrase: string) => phrase.includes('abc'),
+    readData: () => ({ target: 'b' }),
+  },
+  { name: 'EVERYTHING', identify: () => true, readData: () => 'unknown' },
+];
 
 describe('UseCaseService', () => {
   let service: UseCaseService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [{ provide: USE_CASES, useValue: [TestUseCase] }],
+      providers: [{ provide: USE_CASES, useValue: testUseCases }],
     });
     service = TestBed.inject(UseCaseService);
   });
@@ -28,19 +33,20 @@ describe('UseCaseService', () => {
     it('should identify abc phrase', () => {
       const useCase = service.matchUseCase(REGISTER_SYMBOL_PHRASE);
 
-      expect(useCase).toBeInstanceOf(TestUseCase);
+      expect(useCase?.name).toBe('ABC');
     });
 
     it('should read data from a TestUseCase phrase', () => {
       const useCase = service.matchUseCase(REGISTER_SYMBOL_PHRASE);
 
-      expect(useCase?.getData()).toEqual({ target: 'b' });
+      expect(useCase?.data).toEqual({ target: 'b' });
     });
 
     it('should not read data from a not matching phrase', () => {
       const useCase = service.matchUseCase('def');
 
-      expect(useCase?.getData()).toBe(undefined);
+      expect(useCase?.name).toBe('EVERYTHING');
+      expect(useCase?.data).toBe('unknown');
     });
   });
 });
