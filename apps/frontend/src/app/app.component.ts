@@ -1,5 +1,11 @@
 import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { CalculatePriceOfItems } from './use-case/calculate-price-of-items';
+import { ConvertRomanToArabic } from './use-case/convert-roman-to-arabic';
+import { ProfessIncomprehension } from './use-case/profess-incomprehension';
+import { RegisterPrice } from './use-case/register-price';
+import { RegisterSymbol } from './use-case/register-symbol';
+import { UseCaseService } from './use-case/use-case.service';
 
 @Component({
   selector: 'merchants-guide-to-the-galaxy-root',
@@ -14,8 +20,26 @@ export class AppComponent {
 
   title = "Merchant's Guide to the Galaxy";
 
+  private useCaseService = inject(UseCaseService);
+
   submit() {
-    // empty
+    const useCase = this.useCaseService.matchUseCase(this.commandControl.value);
+
+    if (useCase instanceof RegisterSymbol) {
+      // empty
+    }
+    if (useCase instanceof RegisterPrice) {
+      // empty
+    }
+    if (useCase instanceof ConvertRomanToArabic) {
+      // empty
+    }
+    if (useCase instanceof CalculatePriceOfItems) {
+      // empty
+    }
+    if (useCase instanceof ProfessIncomprehension) {
+      this.print('I have no idea what you are talking about');
+    }
   }
 
   print(text: string) {
