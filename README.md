@@ -1,5 +1,9 @@
 # MERCHANT'S GUIDE TO THE GALAXY
 
+## Check out the application
+
+https://procrafts.github.io/merchants-guide-to-the-galaxy/
+
 ## Setup Guide
 
 - install [Node.js 16](https://nodejs.org/de/download/releases/)
