@@ -4,7 +4,7 @@ import { TestPhrases } from '../testing/test-phrases';
 describe('RegisterPrice', () => {
   describe('.identify', () => {
     it.each(TestPhrases.getMatchTable('registerPrice'))(
-      '.identify should $verb "$phrase"',
+      'should $verb "$phrase"',
       ({ phrase, isMatch: expectedResult }) => {
         const subject = new RegisterPrice();
 

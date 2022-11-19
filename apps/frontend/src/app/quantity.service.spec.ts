@@ -2,37 +2,37 @@ import { QuantityService } from './quantity.service';
 
 describe('QuantityService', () => {
   describe('.count', () => {
-    it('count a alien numeral', () => {
+    it('should count a alien numeral', () => {
       const subject = new QuantityService();
-      subject.add({ key: 'prok', value: 'V' });
+      subject.add('prok', 'V');
 
       const result = subject.count('prok');
 
       expect(result).toBe(5);
     });
 
-    it('count alien numerals', () => {
+    it('should count alien numerals', () => {
       const subject = new QuantityService();
-      subject.add({ key: 'prok', value: 'V' });
-      subject.add({ key: 'pish', value: 'X' });
+      subject.add('prok', 'V');
+      subject.add('pish', 'X');
 
       const result = subject.count('pish prok');
 
       expect(result).toBe(15);
     });
 
-    it('count unknown alien numerals', () => {
+    it('should count unknown alien numerals', () => {
       const subject = new QuantityService();
-      subject.add({ key: 'prok', value: 'V' });
+      subject.add('prok', 'V');
 
       const result = subject.count('pish prok');
 
       expect(Number.isNaN(result)).toBe(true);
     });
 
-    it('count invalid alien numerals', () => {
+    it('should count invalid alien numerals', () => {
       const subject = new QuantityService();
-      subject.add({ key: 'pish', value: 'X' });
+      subject.add('pish', 'X');
 
       const result = subject.count('pish pish pish pish pish');
 

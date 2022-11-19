@@ -1,9 +1,9 @@
 import { UseCase } from './use-case';
 
 export interface RegisterSymbolModel {
-  key: string;
-  value: string;
+  alien: string;
+  roman: string;
 }
 export class RegisterSymbol extends UseCase<RegisterSymbolModel> {
-  protected pattern = /^(?<key>[a-zA-Z]+) is (?<value>[IVXLCDM])$/;
+  protected pattern = /^(?<alien>[a-zA-Z]+) is (?<roman>[IVXLCDM])$/;
 }

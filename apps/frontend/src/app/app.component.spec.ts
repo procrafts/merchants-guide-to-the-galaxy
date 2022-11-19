@@ -61,7 +61,7 @@ describe('AppComponent', () => {
     expect(fixture.componentInstance.commandControl.value).toBe('glob is I');
   });
 
-  it('add output element', () => {
+  it('should add output element', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
 

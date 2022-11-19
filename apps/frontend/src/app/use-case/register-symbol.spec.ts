@@ -4,7 +4,7 @@ import { TestPhrases } from '../testing/test-phrases';
 describe('RegisterSymbol', () => {
   describe('.identify', () => {
     it.each(TestPhrases.getMatchTable('registerSymbol'))(
-      '.identify should $verb "$phrase"',
+      'should $verb "$phrase"',
       ({ phrase, isMatch: expectedResult }) => {
         const subject = new RegisterSymbol();
 
@@ -19,22 +19,22 @@ describe('RegisterSymbol', () => {
     it.each([
       {
         phrase: TestPhrases.phrases.registerSymbol[0],
-        expectedData: { key: 'glob', value: 'I' },
+        expectedData: { alien: 'glob', roman: 'I' },
       },
       {
         phrase: TestPhrases.phrases.registerSymbol[1],
-        expectedData: { key: 'prok', value: 'V' },
+        expectedData: { alien: 'prok', roman: 'V' },
       },
       {
         phrase: TestPhrases.phrases.registerSymbol[2],
-        expectedData: { key: 'pish', value: 'X' },
+        expectedData: { alien: 'pish', roman: 'X' },
       },
       {
         phrase: TestPhrases.phrases.registerSymbol[3],
-        expectedData: { key: 'tegj', value: 'L' },
+        expectedData: { alien: 'tegj', roman: 'L' },
       },
     ])(
-      '.initialize should read correct data from "$phrase"',
+      'should read correct data from "$phrase"',
       ({ phrase, expectedData }) => {
         const subject = new RegisterSymbol();
 

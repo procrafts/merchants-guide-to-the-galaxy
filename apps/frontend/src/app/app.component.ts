@@ -31,12 +31,14 @@ export class AppComponent {
     if (useCase instanceof RegisterSymbol) {
       const data = useCase.getData();
       if (data) {
-        this.quantityService.add(data);
+        this.quantityService.add(data.alien, data.roman);
       }
     }
+
     if (useCase instanceof RegisterPrice) {
       // empty
     }
+
     if (useCase instanceof ConvertRomanToArabic) {
       const quantity = useCase.getData()?.quantity;
       let result = NaN;
@@ -49,9 +51,11 @@ export class AppComponent {
         this.print(`${quantity} is ${result}`);
       }
     }
+
     if (useCase instanceof CalculatePriceOfItems) {
       // empty
     }
+
     if (useCase instanceof ProfessIncomprehension) {
       this.print('I have no idea what you are talking about');
     }

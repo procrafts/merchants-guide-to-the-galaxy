@@ -24,21 +24,23 @@ describe('UseCaseService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should identify abc phrase', () => {
-    const useCase = service.matchUseCase(REGISTER_SYMBOL_PHRASE);
+  describe('.matchUseCase', () => {
+    it('should identify abc phrase', () => {
+      const useCase = service.matchUseCase(REGISTER_SYMBOL_PHRASE);
 
-    expect(useCase).toBeInstanceOf(TestUseCase);
-  });
+      expect(useCase).toBeInstanceOf(TestUseCase);
+    });
 
-  it('should read data from a TestUseCase phrase', () => {
-    const useCase = service.matchUseCase(REGISTER_SYMBOL_PHRASE);
+    it('should read data from a TestUseCase phrase', () => {
+      const useCase = service.matchUseCase(REGISTER_SYMBOL_PHRASE);
 
-    expect(useCase?.getData()).toEqual({ target: 'b' });
-  });
+      expect(useCase?.getData()).toEqual({ target: 'b' });
+    });
 
-  it('should not read data from a not matching phrase', () => {
-    const useCase = service.matchUseCase('def');
+    it('should not read data from a not matching phrase', () => {
+      const useCase = service.matchUseCase('def');
 
-    expect(useCase?.getData()).toBe(undefined);
+      expect(useCase?.getData()).toBe(undefined);
+    });
   });
 });

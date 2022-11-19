@@ -5,7 +5,7 @@ describe('ProfessIncomprehension', () => {
   describe('.identify', () => {
     it.each(
       TestPhrases.getAll().map((phrase) => ({ phrase, expectedResult: true }))
-    )('.identify should match "$phrase"', ({ phrase, expectedResult }) => {
+    )('should match "$phrase"', ({ phrase, expectedResult }) => {
       const subject = new ProfessIncomprehension();
 
       const result = subject.identify(phrase);
