@@ -36,9 +36,9 @@ describe('UseCaseService', () => {
     expect(useCase?.getData()).toEqual({ target: 'b' });
   });
 
-  it('should read data from a TestUseCase phrase', () => {
-    const useCase = service.matchUseCase(REGISTER_SYMBOL_PHRASE);
+  it('should not read data from a not matching phrase', () => {
+    const useCase = service.matchUseCase('def');
 
-    expect(useCase?.getData()).toEqual({ target: 'b' });
+    expect(useCase?.getData()).toBe(undefined);
   });
 });
